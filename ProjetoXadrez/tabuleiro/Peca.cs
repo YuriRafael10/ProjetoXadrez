@@ -14,4 +14,9 @@ internal class Peca
         this.tab = tab;
         this.qtdMovimentos = 0;
     }
+
+    public void incrementarMovimentos()
+    {
+        qtdMovimentos++;
+    }
 }
