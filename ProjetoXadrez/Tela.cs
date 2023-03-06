@@ -30,10 +30,10 @@ namespace ProjetoXadrez
                 for (int j = 0; j < tab.colunas; j++)
                 {
                     if (posicoesPossiveis[i, j])
-                        Console.BackgroundColor= fundoAlterado;
-                    
+                        Console.BackgroundColor = fundoAlterado;
+
                     else
-                        Console.BackgroundColor= fundoOriginal;
+                        Console.BackgroundColor = fundoOriginal;
                     imprimirPeca(tab.peca(i, j));
                     Console.BackgroundColor = fundoOriginal;
                 }
@@ -71,6 +71,40 @@ namespace ProjetoXadrez
                 }
                 Console.Write(" ");
             }
+        }
+
+        internal static void imprimirPartida(Partida partida)
+        {
+            Tela.imprimirTabuleiro(partida.tab);
+            Console.WriteLine();
+            imprimirPecasCapturadas(partida);
+            Console.WriteLine("\n");
+            Console.WriteLine("Turno: " + partida.turno);
+            Console.WriteLine("Aguardando jogada da: " + partida.jogadorAtual);
+        }
+
+        private static void imprimirPecasCapturadas(Partida partida)
+        {
+            Console.WriteLine("Peças capturadas: ");
+            Console.Write("Brancas: ");
+            imprimirConjunto(partida.pecasCapturadas(Cor.Branca));
+            Console.WriteLine();
+            Console.Write("Pretas: ");
+            ConsoleColor aux = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
+            Console.ForegroundColor = aux;
+            Console.WriteLine();
+        }
+
+        private static void imprimirConjunto(HashSet<Peca> pecas)
+        {
+            Console.Write("[");
+            foreach (Peca p in pecas)
+            {
+                Console.Write(p + " ");
+            }
+            Console.Write("]");
         }
     }
 }
