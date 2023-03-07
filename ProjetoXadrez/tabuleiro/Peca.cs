@@ -21,6 +21,10 @@ abstract class Peca
     {
         qtdMovimentos++;
     }
+    public void decrementarMovimentos()
+    {
+        qtdMovimentos--;
+    }
     public bool existeMovimentosPossiveis()
     {
         bool[,] mat = movimentosPossiveis();
@@ -37,7 +41,7 @@ abstract class Peca
         return false;
     }
 
-    public bool podeMoverPara(Posicao pos)
+    public bool movimentoPossivel(Posicao pos)
     {
         return movimentosPossiveis()[pos.linha, pos.coluna];
     }
